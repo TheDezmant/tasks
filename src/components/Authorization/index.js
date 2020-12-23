@@ -37,7 +37,9 @@ const Authorization = () => {
                     </div>
                 </Password>
                 <Location>
-                    <button>Регистрация</button>
+                    <button>Регистрация
+
+                    </button>
                 </Location>
             </div>
         </StyledAuthorization>
