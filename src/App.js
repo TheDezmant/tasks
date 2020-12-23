@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Authorization from "./components/Authorization";
 
-function App() {
+const App = () => {
+
+    const addressPeople = {
+            country: "Россия",
+            region: "Московский",
+            city:"Москва",
+            street:"Пушкина"
+        }
+    const address = `${addressPeople.country}, ${addressPeople.region}, ${addressPeople.city}, ${addressPeople.street}`
+    console.log(address)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <>
+          {addressPeople.country !==null ? `Страна ${addressPeople.country}` : ""}
+          {addressPeople.region !== null ? `Регион ${addressPeople.region}, `: ""}
+          {addressPeople.city !== null ? `Город ${addressPeople.city}, `: ""}
+          {addressPeople.street !== null ? `Улица ${addressPeople.street}`: ""}
+
+          <Authorization />
+      </>
+  )
 }
 
 export default App;
