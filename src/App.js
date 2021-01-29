@@ -1,13 +1,15 @@
-import "./App.css";
+import './App.css';
 
-import Registration from "./components/Registration/Registration";
+import Registration from './components/Registration/Registration';
+import DropDown from './components/DropDown/DropDown';
 
 const App = () => {
-  return (
-    <>
-      <Registration />
-    </>
-  );
+    return (
+        <>
+            <DropDown />
+            <Registration />
+        </>
+    );
 };
 
 export default App;
