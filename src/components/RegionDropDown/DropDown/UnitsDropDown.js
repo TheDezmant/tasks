@@ -20,6 +20,10 @@ export const MenuDropDown = styled.div`
     height: 350px;
     box-shadow: 0 10px 15px grey;
     overflow-y: auto;
+    background-color: white;
+`;
+export const Wrapper = styled.div`
+    position: absolute;
 `;
 export const AllocatedObject = styled.span`
     color: blue;

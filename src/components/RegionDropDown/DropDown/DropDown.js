@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { InputDropDown, MenuDropDown, StyledMutableItem, EmptyState, AllocatedObject } from './UnitsDropDown';
+import { InputDropDown, MenuDropDown, StyledMutableItem, EmptyState, AllocatedObject, Wrapper } from './UnitsDropDown';
 
-const DropDown = (props) => {
+const DropDown = ({ data, emptyValue, text, inputPlaceholder, errorEmptyState }) => {
     const [showDropDown, setShowDropDown] = useState(false);
     const [enteredObject, setEnteredObject] = useState('');
-    const [point, setPoint] = useState(() => {
-        const initialState = props.emptyValue;
-        return initialState;
-    });
+    const [point, setPoint] = useState(emptyValue);
     const selectListItem = (item) => {
         setPoint(item);
     };
@@ -15,35 +12,33 @@ const DropDown = (props) => {
         setShowDropDown(false);
     };
 
-    let newElementsData = props.DATA.filter(({ item, id }) => item.includes(enteredObject)).map(({ item, id }) => (
-        <StyledMutableItem
-            onClick={() => {
-                selectListItem(item);
-                closeWhenSelected();
-            }}
-            key={id}>
-            {item}
-        </StyledMutableItem>
-    ));
+    const newElementsData = data
+        .filter(({ item }) => item.includes(enteredObject))
+        .map(({ item, id }) => (
+            <StyledMutableItem
+                onClick={() => {
+                    selectListItem(item);
+                    closeWhenSelected();
+                }}
+                key={id}>
+                {item}
+            </StyledMutableItem>
+        ));
     return (
         <div>
-            {props.text}
+            {text}
             <AllocatedObject onClick={() => setShowDropDown(!showDropDown)}>{point}</AllocatedObject>
             {showDropDown && (
-                <div>
+                <Wrapper>
                     <InputDropDown
-                        placeholder={props.inputPlaceholder}
+                        placeholder={inputPlaceholder}
                         value={enteredObject}
                         onChange={(e) => setEnteredObject(e.target.value)}
                     />
                     <MenuDropDown>
-                        {newElementsData.length === 0 ? (
-                            <EmptyState>{props.errorEmptyState}</EmptyState>
-                        ) : (
-                            newElementsData
-                        )}
+                        {newElementsData.length === 0 ? <EmptyState>{errorEmptyState}</EmptyState> : newElementsData}
                     </MenuDropDown>
-                </div>
+                </Wrapper>
             )}
         </div>
     );

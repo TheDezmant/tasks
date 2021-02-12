@@ -20,7 +20,7 @@ const RegionDropDown = () => {
         <>
             <DropDown
                 text={'Выберите регион:'}
-                {...{ DATA }}
+                data={DATA}
                 errorEmptyState={'Объектов не найдено'}
                 emptyValue={'Москва'}
                 inputPlaceholder={'Введите город'}
