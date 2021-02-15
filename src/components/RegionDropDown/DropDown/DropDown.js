@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { InputDropDown, MenuDropDown, StyledMutableItem, EmptyState, AllocatedObject, Wrapper } from './UnitsDropDown';
 
-const DropDown = ({ data, emptyValue, text, inputPlaceholder, errorEmptyState }) => {
-    const [showDropDown, setShowDropDown] = useState(false);
+const DropDown = ({ data, emptyValue, text, inputPlaceholder, errorEmptyState, showDropDown, setShowDropDown }) => {
     const [enteredObject, setEnteredObject] = useState('');
     const [point, setPoint] = useState(emptyValue);
     const selectListItem = (item) => {

@@ -64,16 +64,17 @@ const Gallery = () => {
     const [update, setUpdate] = useState(true);
     const [tabs, setTabs] = useState(0);
     const [addData, setAddData] = useState([]);
+    const [data, setData] = useState(DATA);
 
     const menuTabs = MENUTABS.map(({ item, id }) => <Tabs onClick={() => setTabs(id)} key={id} {...{ item }} />);
 
     const menuFilter = (name) => {
-        return DATA.filter(({ description }) => description === name).map(({ id, url }) => (
-            <PicturesViewOnly url={url} key={id} />
-        ));
+        return data
+            .filter(({ description }) => description === name)
+            .map(({ id, url }) => <PicturesViewOnly url={url} key={id} />);
     };
     const menuMap = () => {
-        return DATA.map(({ id, url }, index) => (
+        return data.map(({ id, url }, index) => (
             <Pictures
                 url={url}
                 key={index}
@@ -97,9 +98,9 @@ const Gallery = () => {
 
     const addPictures = () => {
         setUpdate(!update);
-        const id = DATA.length + 1;
+        const id = data.length + 1;
         if (enteredUrl.length !== 0) {
-            DATA.push({
+            data.push({
                 id,
                 url: enteredUrl
             });
@@ -109,7 +110,7 @@ const Gallery = () => {
     const downloadPictures = () => {
         setUpdate(!update);
         addData.map(({ id, url }) =>
-            DATA.push({
+            data.push({
                 id,
                 url
             })
@@ -124,7 +125,7 @@ const Gallery = () => {
 
     const deletePictures = (index) => {
         setUpdate(!update);
-        DATA.splice(index, 1);
+        data.splice(index, 1);
     };
     return (
         <>
@@ -141,6 +142,7 @@ const Gallery = () => {
                     Добавить
                 </Button>
                 <button onClick={() => downloadPictures()}>Загрузить</button>
+                <button>Helg</button>
             </Header>
             <StyledTabs>{menuTabs}</StyledTabs>
             <SetOfPictures>{gallery}</SetOfPictures>

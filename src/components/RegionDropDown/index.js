@@ -15,10 +15,12 @@ const DATA = [
     { id: 12, item: 'Казань' }
 ];
 
-const RegionDropDown = () => {
+const RegionDropDown = ({ showDropDown, setShowDropDown }) => {
     return (
         <>
             <DropDown
+                {...{ showDropDown }}
+                {...{ setShowDropDown }}
                 text={'Выберите регион:'}
                 data={DATA}
                 errorEmptyState={'Объектов не найдено'}
