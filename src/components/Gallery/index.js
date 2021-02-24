@@ -61,7 +61,6 @@ const DATA = [
 
 const Gallery = () => {
     const [enteredUrl, setEnteredUrl] = useState('');
-    const [update, setUpdate] = useState(true);
     const [tabs, setTabs] = useState(0);
     const [addData, setAddData] = useState([]);
     const [data, setData] = useState(DATA);
@@ -97,24 +96,14 @@ const Gallery = () => {
             : '';
 
     const addPictures = () => {
-        setUpdate(!update);
         const id = data.length + 1;
         if (enteredUrl.length !== 0) {
-            data.push({
-                id,
-                url: enteredUrl
-            });
+            setData((prevArray) => [...prevArray, { id, url: enteredUrl }]);
         }
     };
 
     const downloadPictures = () => {
-        setUpdate(!update);
-        addData.map(({ id, url }) =>
-            data.push({
-                id,
-                url
-            })
-        );
+        addData.map(({ id, url }) => setData((prevArray) => [...prevArray, { id, url }]));
     };
 
     useEffect(() => {
