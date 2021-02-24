@@ -124,8 +124,7 @@ const Gallery = () => {
     }, []);
 
     const deletePictures = (index) => {
-        setUpdate(!update);
-        data.splice(index, 1);
+        setData((prevArray) => [...prevArray].filter((el, i) => index !== i));
     };
     return (
         <>
@@ -142,7 +141,6 @@ const Gallery = () => {
                     Добавить
                 </Button>
                 <button onClick={() => downloadPictures()}>Загрузить</button>
-                <button>Helg</button>
             </Header>
             <StyledTabs>{menuTabs}</StyledTabs>
             <SetOfPictures>{gallery}</SetOfPictures>
